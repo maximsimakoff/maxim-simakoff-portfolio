@@ -271,7 +271,7 @@ function Graph({
   });
 
   return (
-    <group ref={graphRef} position={[0, 0.26, 0]} scale={0.86}>
+    <group ref={graphRef} position={[0, 0.18, 0]} scale={0.74}>
       <mesh position={corePosition}>
         <sphereGeometry args={[0.14, 28, 28]} />
         <meshStandardMaterial
@@ -312,10 +312,10 @@ export function TechGraphScene(props: TechGraphSceneProps) {
     <Canvas
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 10.9], fov: 35 }}
+      camera={{ position: [0, 0, 12.6], fov: 35 }}
       onPointerMissed={() => props.onPreviewChange(null)}
     >
-      <fog attach="fog" args={["#050505", 6.4, 11.2]} />
+      <fog attach="fog" args={["#050505", 7.2, 13]} />
       <ambientLight intensity={0.42} />
       <directionalLight position={[4, 6, 3]} intensity={1.08} color="#ffffff" />
       <pointLight position={[-4, -2, 4]} intensity={0.32} color="#f5f3ef" />

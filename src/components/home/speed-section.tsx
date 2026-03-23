@@ -148,7 +148,6 @@ function PulsePath({
 function SpeedFlowVisual() {
   const { speed } = portfolioContent;
   const reducedMotion = useReducedMotion() ?? false;
-  const [activeIndex, setActiveIndex] = useState(2);
 
   return (
     <div className="panel relative min-h-[44rem] rounded-[2rem] p-6 sm:min-h-[48rem] sm:p-8 lg:min-h-[50rem] lg:p-10">
@@ -165,21 +164,21 @@ function SpeedFlowVisual() {
       >
         <PulsePath
           path={SOURCE_PATHS[0]}
-          active={activeIndex === 0}
+          active={false}
           begin="0s"
           duration="2.4s"
           reducedMotion={reducedMotion}
         />
         <PulsePath
           path={SOURCE_PATHS[1]}
-          active={activeIndex === 1}
+          active={false}
           begin="0.45s"
           duration="2.2s"
           reducedMotion={reducedMotion}
         />
         <PulsePath
           path={SOURCE_PATHS[2]}
-          active={activeIndex === 2}
+          active={false}
           begin="0.9s"
           duration="2.55s"
           reducedMotion={reducedMotion}
@@ -207,35 +206,19 @@ function SpeedFlowVisual() {
 
         <div className="grid gap-4 sm:grid-cols-3">
           {speed.sources.map((source, index) => {
-            const isActive = activeIndex === index;
-
             return (
-              <button
+              <div
                 key={source.label}
-                type="button"
-                aria-pressed={isActive}
-                onClick={() => setActiveIndex(index)}
-                onFocus={() => setActiveIndex(index)}
-                onMouseEnter={() => setActiveIndex(index)}
-                className={`rounded-[1.55rem] border px-4 py-4 text-left transition-colors duration-300 sm:min-h-[9.25rem] sm:px-5 sm:py-5 ${
-                  isActive
-                    ? "border-white/28 bg-white/[0.07] text-stone-100"
-                    : "border-white/10 bg-black/25 text-stone-300 hover:border-white/18 hover:bg-white/[0.04]"
-                }`}
+                className="rounded-[1.55rem] border border-white/10 bg-black/25 px-4 py-4 text-left text-stone-300 sm:min-h-[9.25rem] sm:px-5 sm:py-5"
               >
                 <div className="flex items-center justify-between gap-4">
                   <p className="eyebrow">Source 0{index + 1}</p>
-                  <span
-                    aria-hidden="true"
-                    className={`h-2.5 w-2.5 rounded-full ${
-                      isActive ? "bg-white/90" : "bg-white/20"
-                    }`}
-                  />
+                  <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-white/20" />
                 </div>
                 <p className="mt-6 font-serif text-[1.5rem] leading-tight text-ink sm:text-[1.68rem]">
                   {source.label}
                 </p>
-              </button>
+              </div>
             );
           })}
         </div>
@@ -306,16 +289,17 @@ export function SpeedSection() {
               >
                 {speed.title}
               </h2>
-              <p className="max-w-xl text-sm leading-7 text-stone-400 sm:text-[1rem]">
-                {speed.description}
-              </p>
+              {speed.description ? (
+                <p className="max-w-xl text-sm leading-7 text-stone-400 sm:text-[1rem]">
+                  {speed.description}
+                </p>
+              ) : null}
             </div>
 
             <AnimatedTimer />
 
             <div className="panel rounded-[1.85rem] p-6 sm:p-7">
-              <p className="eyebrow">Why it matters</p>
-              <div className="mt-5 grid gap-5">
+              <div className="grid gap-5">
                 {speed.takeaways.map((takeaway) => (
                   <div
                     key={takeaway.label}

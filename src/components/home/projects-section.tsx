@@ -15,7 +15,6 @@ export function ProjectsSection() {
         index="02"
         label="Projects"
         title="Selected work."
-        description="A few projects that show product and systems range."
       />
 
       <div className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">

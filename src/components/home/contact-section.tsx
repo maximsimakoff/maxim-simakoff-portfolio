@@ -14,7 +14,7 @@ export function ContactSection() {
       className="section-spacing scroll-mt-28 border-t border-line pt-16 md:pt-20"
     >
       <SectionHeading
-        index="06"
+        index="05"
         label="Contact"
         title={contact.title}
         description={contact.description}

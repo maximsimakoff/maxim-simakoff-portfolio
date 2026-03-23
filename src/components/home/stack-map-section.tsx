@@ -54,12 +54,14 @@ export function StackMapSection() {
               </p>
             </div>
 
-            <p className="mt-5 max-w-lg font-serif text-[1.95rem] leading-tight text-ink sm:text-[2.35rem]">
-              {stackMap.intro}
-            </p>
+            {stackMap.intro ? (
+              <p className="mt-5 max-w-lg font-serif text-[1.95rem] leading-tight text-ink sm:text-[2.35rem]">
+                {stackMap.intro}
+              </p>
+            ) : null}
 
             {selectedCluster ? (
-              <div className="mt-6 flex h-[18rem] flex-col rounded-[1.55rem] border border-white/10 bg-black/25 p-5 sm:h-[17rem] lg:h-[16.75rem]">
+              <div className={`${stackMap.intro ? "mt-6" : "mt-4"} flex h-[18rem] flex-col rounded-[1.55rem] border border-white/10 bg-black/25 p-5 sm:h-[17rem] lg:h-[16.75rem]`}>
                 <div className="flex items-center justify-between gap-4">
                   <p className="eyebrow">Selected branch</p>
                   <span className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-stone-500">
@@ -140,10 +142,6 @@ export function StackMapSection() {
                 );
               })}
             </div>
-
-            <p className="mt-4 text-sm leading-6 text-stone-500">
-              {stackMap.guidance}
-            </p>
           </div>
         </Reveal>
 

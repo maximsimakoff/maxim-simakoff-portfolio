@@ -25,17 +25,6 @@ export function Hero() {
             {person.statusNote}
           </div>
         </Reveal>
-
-        <Reveal delay={0.08} className="grid gap-3 sm:grid-cols-3">
-          {hero.supportingPoints.map((item) => (
-            <div key={item.label} className="panel p-4">
-              <p className="eyebrow">{item.label}</p>
-              <p className="mt-3 min-w-0 text-sm leading-7 text-stone-300">
-                {item.value}
-              </p>
-            </div>
-          ))}
-        </Reveal>
       </div>
 
       <Reveal delay={0.12}>

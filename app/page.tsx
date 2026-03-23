@@ -4,7 +4,6 @@ import { ContactSection } from "@/components/home/contact-section";
 import { ExperienceSection } from "@/components/home/experience-section";
 import { Hero } from "@/components/home/hero";
 import { ProjectsSection } from "@/components/home/projects-section";
-import { ResumeSection } from "@/components/home/resume-section";
 import { SpeedSection } from "@/components/home/speed-section";
 import { StackMapSection } from "@/components/home/stack-map-section";
 import { Reveal } from "@/components/reveal";
@@ -40,16 +39,21 @@ export default function HomePage() {
           <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
             <Reveal>
               <div className="panel rounded-[2rem] p-6 sm:p-8">
-                <p className="max-w-2xl font-serif text-[2.05rem] leading-tight text-ink sm:text-[2.7rem]">
+                <p className="max-w-xl font-serif text-[1.7rem] leading-[1.08] text-ink sm:text-[2.15rem] lg:text-[2.35rem]">
                   {person.snapshot}
                 </p>
-                <div className="mt-5 space-y-4">
-                  {about.paragraphs.map((paragraph) => (
-                    <p key={paragraph} className="max-w-copy text-sm leading-7 text-stone-400 sm:text-base">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
+                {about.paragraphs.length > 0 ? (
+                  <div className="mt-5 space-y-4">
+                    {about.paragraphs.map((paragraph) => (
+                      <p
+                        key={paragraph}
+                        className="max-w-copy text-sm leading-7 text-stone-400 sm:text-base"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             </Reveal>
 
@@ -82,7 +86,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <ResumeSection />
         <ContactSection />
 
         <Reveal className="section-spacing pt-8">

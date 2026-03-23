@@ -80,7 +80,6 @@ export const portfolioContent = {
     { label: "Projects", href: "#projects" },
     { label: "Stack", href: "#stack" },
     { label: "About", href: "#about" },
-    { label: "Resume", href: "#resume" },
     { label: "Contact", href: "#contact" }
   ] satisfies NavItem[],
   person: {
@@ -95,26 +94,12 @@ export const portfolioContent = {
     eyebrow: "Portfolio",
     title: "Full-stack systems for real internal workflows.",
     description:
-      "At Tribe Capital, I built tools that help the investment team review investor relationships and follow up on opportunities.",
-    supportingPoints: [
-      {
-        label: "latest",
-        value: "Tribe Capital"
-      },
-      {
-        label: "focus",
-        value: "internal tools / CRM / investor ops"
-      },
-      {
-        label: "scope",
-        value: "product design and engineering"
-      }
-    ] satisfies SignalItem[]
+      "At Tribe Capital, I built tools that help the investment team review investor relationships and follow up on opportunities."
   },
   speed: {
-    eyebrow: "Speed to clarity",
+    eyebrow: "Operating view",
     title: "Decision-ready context in seconds.",
-    description: "from live inputs to a usable operating view",
+    description: "",
     statValue: 2,
     statLabel: "",
     statNote:
@@ -149,11 +134,8 @@ export const portfolioContent = {
   } satisfies SpeedSectionContent,
   about: {
     title: "How I work.",
-    description: "A short view of how I think about building.",
-    paragraphs: [
-      "I like software that clears operational bottlenecks, not just surface-level UI problems.",
-      "The work I enjoy most sits where product judgment, systems design, and reliable delivery meet."
-    ],
+    description: "",
+    paragraphs: [],
     principles: [
       {
         label: "Build",
@@ -191,12 +173,16 @@ export const portfolioContent = {
     ],
     pillars: [
       {
-        label: "Product systems",
-        value: "Internal tools shaped around real operating workflows."
+        label: "Workflow",
+        value: "Custom CRM and investor tooling built around how teams actually operate."
+      },
+      {
+        label: "Visibility",
+        value: "Pipeline state, ownership, and next actions surfaced in one usable layer."
       },
       {
         label: "Full-stack",
-        value: "Frontend, backend, logic, and integration ownership."
+        value: "Frontend, backend, APIs, and integration logic owned end to end."
       },
       {
         label: "Delivery",
@@ -213,8 +199,7 @@ export const portfolioContent = {
       "Investor workflows"
     ]
   } satisfies FeaturedExperience,
-  experienceNotice:
-    "Earlier roles are brief here. The focus is recent engineering work.",
+  experienceNotice: "",
   experience: [
     {
       company: "School16.co",
@@ -276,11 +261,8 @@ export const portfolioContent = {
   ] satisfies ProjectItem[],
   stackMap: {
     title: "Technical stack.",
-    description:
-      "A focused view of the tools behind my recent work.",
-    intro:
-      "The toolkit behind internal products, workflow software, and infra-aware delivery.",
-    guidance: "Hover to preview. Click to keep a branch selected.",
+    description: "",
+    intro: "",
     clusters: [
       {
         id: "workflow",
@@ -333,16 +315,10 @@ export const portfolioContent = {
     ] satisfies StackCluster[]
   },
   resume: {
-    intro:
-      "A clean resume view with the same recent experience and project emphasis.",
+    intro: "",
     description:
       "Short, readable, and centered on recent technical work.",
-    highlights: [
-      "Recent work centers on CRM, investor pipeline, and internal systems at Tribe Capital.",
-      "Comfortable working across product design, frontend, and backend engineering.",
-      "Built AI-assisted tools and systems programming projects with product and systems depth.",
-      "Computer Science student at UMass Amherst, graduating May 2027."
-    ]
+    highlights: []
   },
   skills: [
     {
@@ -367,8 +343,7 @@ export const portfolioContent = {
     }
   ],
   contact: {
-    title: "Open to full-stack and systems roles.",
-    description:
-      "Best fit: product-minded teams building internal tools, workflow systems, or infra-aware software."
+    title: "Open to full-stack roles.",
+    description: ""
   }
 };

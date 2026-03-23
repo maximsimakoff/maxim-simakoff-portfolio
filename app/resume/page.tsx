@@ -34,9 +34,11 @@ export default function ResumePage() {
               <h1 className="font-serif text-[2.55rem] text-ink sm:text-[3.4rem]">
                 {person.name}
               </h1>
-              <p className="max-w-2xl text-[1.02rem] leading-7 text-stone-300 sm:text-[1.08rem] sm:leading-8">
-                {resume.intro}
-              </p>
+              {resume.intro ? (
+                <p className="max-w-2xl text-[1.02rem] leading-7 text-stone-300 sm:text-[1.08rem] sm:leading-8">
+                  {resume.intro}
+                </p>
+              ) : null}
             </div>
             {hasSidebar ? (
               <div className="space-y-3 border-t border-line pt-6 text-sm leading-7 text-stone-300 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
@@ -51,29 +53,31 @@ export default function ResumePage() {
           </div>
         </Reveal>
 
-        <section className="section-spacing scroll-mt-28 border-t border-line pt-16">
-          <SectionHeading
-            index="01"
-            label="Highlights"
-            title="Quick overview."
-            description={resume.description}
-          />
-          <div className="grid gap-4 md:grid-cols-2">
-            {resume.highlights.map((item, index) => (
-              <Reveal
-                key={item}
-                delay={index * 0.05}
-                className="panel rounded-[1.4rem] p-6 text-sm leading-7 text-stone-300"
-              >
-                {item}
-              </Reveal>
-            ))}
-          </div>
-        </section>
+        {resume.highlights.length > 0 ? (
+          <section className="section-spacing scroll-mt-28 border-t border-line pt-16">
+            <SectionHeading
+              index="01"
+              label="Highlights"
+              title="Quick overview."
+              description={resume.description}
+            />
+            <div className="grid gap-4 md:grid-cols-2">
+              {resume.highlights.map((item, index) => (
+                <Reveal
+                  key={item}
+                  delay={index * 0.05}
+                  className="panel rounded-[1.4rem] p-6 text-sm leading-7 text-stone-300"
+                >
+                  {item}
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="section-spacing scroll-mt-28 border-t border-line pt-16">
           <SectionHeading
-            index="02"
+            index={resume.highlights.length > 0 ? "02" : "01"}
             label="Featured experience"
             title={`${featuredExperience.company} / ${featuredExperience.role}`}
             description={featuredExperience.spotlight}
@@ -123,7 +127,7 @@ export default function ResumePage() {
 
         <section className="section-spacing scroll-mt-28 border-t border-line pt-16">
           <SectionHeading
-            index="03"
+            index={resume.highlights.length > 0 ? "03" : "02"}
             label="Additional experience"
             title="Earlier experience"
             description={portfolioContent.experienceNotice}
@@ -164,7 +168,11 @@ export default function ResumePage() {
         </section>
 
         <section className="section-spacing scroll-mt-28 border-t border-line pt-16">
-          <SectionHeading index="04" label="Projects" title="Selected work" />
+          <SectionHeading
+            index={resume.highlights.length > 0 ? "04" : "03"}
+            label="Projects"
+            title="Selected work"
+          />
           <div className="grid gap-5 lg:grid-cols-2">
             {projects.map((project, index) => (
               <Reveal
@@ -193,7 +201,11 @@ export default function ResumePage() {
         </section>
 
         <section className="section-spacing scroll-mt-28 border-t border-line pt-16">
-          <SectionHeading index="05" label="Skills" title="Tools and working style" />
+          <SectionHeading
+            index={resume.highlights.length > 0 ? "05" : "04"}
+            label="Skills"
+            title="Tools and working style"
+          />
           <div className="grid gap-5 lg:grid-cols-2">
             {skills.map((group, index) => (
               <Reveal
