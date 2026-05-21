@@ -1,18 +1,19 @@
 "use client";
 
 import { Html, Line } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 
+import { StackGraphFallback } from "@/components/three/scene-fallbacks";
+import { DefaultSceneLights, SceneCanvas } from "@/components/three/scene-canvas";
+import type { Vector3Tuple } from "@/components/three/types";
+import { WebGLGuard } from "@/components/three/webgl-guard";
 import type { StackCluster } from "@/content/portfolio";
-
-type Vector3Tuple = [number, number, number];
 
 type TechGraphSceneProps = {
   clusters: StackCluster[];
   activeId: string;
-  onPreviewChange: (id: string | null) => void;
   onSelect: (id: string) => void;
   reducedMotion: boolean;
 };
@@ -23,6 +24,15 @@ type BranchLayout = {
 };
 
 const corePosition: Vector3Tuple = [0, 0, 0];
+
+const branchColors: Record<string, string> = {
+  workflow: "#ff6b57",
+  frontend: "#8fb7ff",
+  backend: "#d95f8d",
+  infra: "#ff9a66",
+  languages: "#f8f2ea",
+  data: "#79d7c6"
+};
 
 const branchLayouts: Record<string, BranchLayout> = {
   workflow: {
@@ -108,7 +118,6 @@ type BranchProps = {
   cluster: StackCluster;
   active: boolean;
   subdued: boolean;
-  onPreviewChange: (id: string | null) => void;
   onSelect: (id: string) => void;
 };
 
@@ -116,13 +125,13 @@ function Branch({
   cluster,
   active,
   subdued,
-  onPreviewChange,
   onSelect
 }: BranchProps) {
   const layout = branchLayouts[cluster.id];
 
   if (!layout) return null;
 
+  const color = branchColors[cluster.id] ?? "#f8f2ea";
   const childPositions = layout.offsets
     .slice(0, cluster.items.length)
     .map((offset) => addVectors(layout.anchor, offset));
@@ -133,11 +142,6 @@ function Branch({
   const emissive = active ? 0.56 : subdued ? 0.08 : 0.18;
   const ringOpacity = active ? 0.44 : subdued ? 0.07 : 0.18;
 
-  const handleEnter = (event: { stopPropagation: () => void }) => {
-    event.stopPropagation();
-    onPreviewChange(cluster.id);
-  };
-
   const handleSelect = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
     onSelect(cluster.id);
@@ -147,7 +151,7 @@ function Branch({
     <group>
       <Line
         points={[corePosition, branchMid(layout.anchor), layout.anchor]}
-        color="#f5f3ef"
+        color={color}
         transparent
         opacity={lineOpacity}
         lineWidth={active ? 1.6 : 1}
@@ -157,7 +161,7 @@ function Branch({
         <Line
           key={`${cluster.id}-${cluster.items[index]}`}
           points={[layout.anchor, midPoint(layout.anchor, position), position]}
-          color="#d6d3d1"
+          color={color}
           transparent
           opacity={childLineOpacity}
           lineWidth={1}
@@ -166,14 +170,14 @@ function Branch({
 
       <mesh position={layout.anchor} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[active ? 0.37 : 0.31, 0.012, 18, 72]} />
-        <meshBasicMaterial color="#f5f3ef" transparent opacity={ringOpacity} />
+        <meshBasicMaterial color={color} transparent opacity={ringOpacity} />
       </mesh>
 
       <mesh position={layout.anchor}>
         <sphereGeometry args={[active ? 0.14 : 0.122, 24, 24]} />
         <meshStandardMaterial
-          color="#ffffff"
-          emissive="#ffffff"
+          color="#f8f2ea"
+          emissive={color}
           emissiveIntensity={emissive}
           transparent
           opacity={nodeOpacity}
@@ -184,7 +188,6 @@ function Branch({
 
       <mesh
         position={layout.anchor}
-        onPointerEnter={handleEnter}
         onClick={handleSelect}
       >
         <sphereGeometry args={[0.56, 18, 18]} />
@@ -193,11 +196,11 @@ function Branch({
 
       {childPositions.map((position, index) => (
         <group key={`${cluster.id}-node-${cluster.items[index]}`} position={position}>
-          <mesh onPointerEnter={handleEnter} onClick={handleSelect}>
+          <mesh onClick={handleSelect}>
             <sphereGeometry args={[index === 0 ? 0.072 : 0.058, 20, 20]} />
             <meshStandardMaterial
-              color="#f5f3ef"
-              emissive="#ffffff"
+              color="#f8f2ea"
+              emissive={color}
               emissiveIntensity={active ? 0.3 : subdued ? 0.03 : 0.1}
               transparent
               opacity={active ? 0.94 : subdued ? 0.18 : 0.44}
@@ -205,7 +208,7 @@ function Branch({
               roughness={0.28}
             />
           </mesh>
-          <mesh onPointerEnter={handleEnter} onClick={handleSelect}>
+          <mesh onClick={handleSelect}>
             <sphereGeometry args={[0.18, 18, 18]} />
             <meshBasicMaterial transparent opacity={0} depthWrite={false} />
           </mesh>
@@ -213,10 +216,13 @@ function Branch({
       ))}
 
       {active ? (
-        <Html position={addVectors(layout.anchor, [0, 0.42, 0])} center>
+        <Html
+          position={addVectors(layout.anchor, [0, 0.42, 0])}
+          center
+          style={{ pointerEvents: "none" }}
+        >
           <div
-            style={{ pointerEvents: "none" }}
-            className="rounded-full border border-white/10 bg-black/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-stone-200 shadow-[0_18px_48px_rgba(0,0,0,0.3)] backdrop-blur-md"
+            className="rounded-full border border-white/10 bg-black/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-stone-200 shadow-[0_18px_48px_rgba(0,0,0,0.3)] backdrop-blur-md"
           >
             {cluster.label}
           </div>
@@ -229,7 +235,6 @@ function Branch({
 function Graph({
   clusters,
   activeId,
-  onPreviewChange,
   onSelect,
   reducedMotion
 }: TechGraphSceneProps) {
@@ -275,9 +280,9 @@ function Graph({
       <mesh position={corePosition}>
         <sphereGeometry args={[0.14, 28, 28]} />
         <meshStandardMaterial
-          color="#ffffff"
-          emissive="#ffffff"
-          emissiveIntensity={0.26}
+          color="#f8f2ea"
+          emissive="#ff6b57"
+          emissiveIntensity={0.42}
           metalness={0.06}
           roughness={0.18}
         />
@@ -285,12 +290,12 @@ function Graph({
 
       <mesh position={corePosition} rotation={[Math.PI / 2, 0.24, 0]}>
         <torusGeometry args={[0.52, 0.012, 18, 96]} />
-        <meshBasicMaterial color="#f5f3ef" transparent opacity={0.16} />
+        <meshBasicMaterial color="#ff6b57" transparent opacity={0.3} />
       </mesh>
 
       <mesh position={corePosition} rotation={[0.84, 1.08, 0.26]}>
         <torusGeometry args={[0.78, 0.009, 18, 96]} />
-        <meshBasicMaterial color="#d6d3d1" transparent opacity={0.08} />
+        <meshBasicMaterial color="#8fb7ff" transparent opacity={0.16} />
       </mesh>
 
       {clusters.map((cluster) => (
@@ -299,7 +304,6 @@ function Graph({
           cluster={cluster}
           active={cluster.id === activeId}
           subdued={Boolean(activeId) && cluster.id !== activeId}
-          onPreviewChange={onPreviewChange}
           onSelect={onSelect}
         />
       ))}
@@ -308,19 +312,22 @@ function Graph({
 }
 
 export function TechGraphScene(props: TechGraphSceneProps) {
+  const activeLabel =
+    props.clusters.find((cluster) => cluster.id === props.activeId)?.label ??
+    props.clusters[0]?.label;
+
   return (
-    <Canvas
-      dpr={[1, 1.5]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 12.6], fov: 35 }}
-      onPointerMissed={() => props.onPreviewChange(null)}
-    >
-      <fog attach="fog" args={["#050505", 7.2, 13]} />
-      <ambientLight intensity={0.42} />
-      <directionalLight position={[4, 6, 3]} intensity={1.08} color="#ffffff" />
-      <pointLight position={[-4, -2, 4]} intensity={0.32} color="#f5f3ef" />
-      <pointLight position={[3, 1, 2]} intensity={0.18} color="#ffffff" />
-      <Graph {...props} />
-    </Canvas>
+    <WebGLGuard fallback={<StackGraphFallback activeLabel={activeLabel} />}>
+      <SceneCanvas
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 12.6], fov: 35 }}
+        fog={["#070706", 7.2, 13]}
+      >
+        <DefaultSceneLights />
+        <pointLight position={[3, 1, 2]} intensity={0.3} color="#ff6b57" />
+        <pointLight position={[-3, -1, 2]} intensity={0.22} color="#8fb7ff" />
+        <Graph {...props} />
+      </SceneCanvas>
+    </WebGLGuard>
   );
 }

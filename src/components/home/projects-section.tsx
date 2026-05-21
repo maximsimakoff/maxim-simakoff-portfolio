@@ -1,4 +1,3 @@
-import { DepthCard } from "@/components/depth-card";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { portfolioContent } from "@/content/portfolio";
@@ -9,71 +8,66 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="section-spacing scroll-mt-28 border-t border-line pt-16 md:pt-20"
+      className="section-spacing section-rule scroll-mt-28"
     >
-      <SectionHeading
-        index="02"
-        label="Projects"
-        title="Selected work."
-      />
+      <SectionHeading index="01" label="Projects" title="Selected systems" />
 
-      <div className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid gap-4">
         <Reveal>
-          <DepthCard className="group panel h-full rounded-[2rem] p-7 sm:p-10">
-            <div className="flex h-full flex-col">
-              <div className="flex items-center justify-between gap-3">
+          <article className="panel p-5 sm:p-6">
+            <div className="grid gap-7 lg:grid-cols-[0.38fr_1fr]">
+              <div>
                 <p className="eyebrow">{featuredProject.label}</p>
-                <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-stone-500">
+                <h3 className="mt-3 text-[2rem] font-semibold leading-tight text-ink sm:text-[2.7rem]">
+                  {featuredProject.name}
+                </h3>
+                <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-coral">
                   {featuredProject.period}
                 </p>
               </div>
-              <div className="mt-7 border-b border-line pb-6">
-                <h3 className="font-serif text-[2.45rem] text-ink sm:text-[3rem]">
-                  {featuredProject.name}
-                </h3>
-              </div>
-              <p className="mt-6 max-w-2xl text-[1.02rem] leading-7 text-stone-200 sm:text-[1.1rem] sm:leading-8">
-                {featuredProject.description}
-              </p>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-stone-400 sm:text-base">
-                {featuredProject.detail}
-              </p>
-              <div className="mt-7 flex flex-wrap gap-2">
-                {featuredProject.tags.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
-                ))}
+
+              <div className="grid gap-5 xl:grid-cols-[1fr_0.72fr]">
+                <p className="text-base leading-8 text-stone-200 sm:text-lg">
+                  {featuredProject.description}
+                </p>
+                <div>
+                  <p className="text-sm leading-7 text-stone-400">
+                    {featuredProject.detail}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {featuredProject.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </DepthCard>
+          </article>
         </Reveal>
 
-        <div className="space-y-5">
+        <div className="grid gap-3">
           {supportingProjects.map((project, index) => (
-            <Reveal key={project.name} delay={index * 0.05}>
-              <DepthCard className="group panel h-full p-6 sm:p-8">
-                <div className="flex items-center justify-between gap-3">
+            <Reveal key={project.name} delay={index * 0.04}>
+              <article className="group grid gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4 transition hover:border-coral/35 hover:bg-white/[0.04] md:grid-cols-[0.36fr_1fr_0.3fr] md:items-start">
+                <div>
                   <p className="eyebrow">{project.label}</p>
-                  <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-stone-500">
-                    {project.period}
-                  </p>
+                  <h3 className="mt-2 text-xl font-semibold text-ink">
+                    {project.name}
+                  </h3>
                 </div>
-                <h3 className="mt-4 text-[1.45rem] text-ink">{project.name}</h3>
-                <p className="mt-4 text-sm leading-7 text-stone-300 sm:text-base">
+                <p className="text-sm leading-7 text-stone-300">
                   {project.description}
                 </p>
-                <p className="mt-3 text-sm leading-7 text-stone-500">
-                  {project.detail}
-                </p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
+                <div className="flex flex-wrap gap-2 md:justify-end">
+                  {project.tags.slice(0, 3).map((tag) => (
                     <span key={tag} className="tag">
                       {tag}
                     </span>
                   ))}
                 </div>
-              </DepthCard>
+              </article>
             </Reveal>
           ))}
         </div>

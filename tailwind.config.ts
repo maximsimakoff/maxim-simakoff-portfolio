@@ -8,16 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#f5f3ef",
-        mist: "#a8a29e",
-        line: "rgba(245, 243, 239, 0.12)",
-        panel: "rgba(255, 255, 255, 0.03)"
+        ink: "#f8f2ea",
+        mist: "#a9a29a",
+        line: "rgba(248, 242, 234, 0.13)",
+        panel: "rgba(255, 255, 255, 0.035)",
+        coral: "#ff6b57",
+        rose: "#d95f8d",
+        powder: "#8fb7ff",
+        "terminal-line": "rgba(174, 197, 221, 0.16)"
       },
       boxShadow: {
         soft: "0 18px 60px rgba(0, 0, 0, 0.32)"
       },
       borderRadius: {
-        panel: "1.5rem"
+        panel: "0.5rem"
       },
       maxWidth: {
         copy: "42rem"

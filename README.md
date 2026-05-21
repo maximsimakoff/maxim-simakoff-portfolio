@@ -1,66 +1,106 @@
 # Maxim Simakoff Portfolio
 
-Minimal Next.js portfolio and resume site built for Vercel deployment.
-
-## Important Note About `venv`
-
-This project is a Node/Next.js app, not a Python app, so a Python `venv` is not the right dependency-isolation tool here.
-
-The safer equivalent for this repo is:
-
-- pin the Node version with `.nvmrc`
-- keep packages local in `node_modules`
-- install from `package-lock.json`
+Terminal-style interactive portfolio and resume site for Maxim Simakoff. The homepage uses a split operator-console layout, a React Three Fiber operating map, project/experience sections, and a private-contact configuration layer for deployment.
 
 ## Stack
 
 - Next.js App Router
+- React 19
 - TypeScript
 - Tailwind CSS
+- React Three Fiber, Drei, and Three.js
 - Framer Motion
+- ESLint
 
-## Recommended Setup
+## Features
 
-### 1. Install and use the pinned Node version
+- Terminal-inspired homepage with sticky/scrollable sidebar navigation.
+- Active sidebar state that tracks clicks, hashes, and section scroll position.
+- 3D operating map with graceful non-WebGL fallback components.
+- Resume page with working in-page navigation for projects, experience, stack, and contact.
+- Content-driven project, experience, stack, and resume data in one TypeScript module.
+- Private contact details loaded from environment variables instead of hard-coded public repo data.
+
+## Requirements
+
+- Node.js 22
+- npm 10+
+
+The repo includes an `.nvmrc` pinned to Node 22.
+
+## Setup
 
 ```bash
 nvm install
 nvm use
-node -v
-```
-
-This repo includes an `.nvmrc` file set to Node 22.
-
-### 2. Install dependencies locally
-
-Use `npm ci` when you want a clean, lockfile-based install:
-
-```bash
 npm ci
 ```
 
-If `node_modules` does not exist yet and you are doing the first install, this also works:
+For a looser local install, `npm install` also works.
+
+## Environment
+
+Copy the example file and fill in any private contact values you want rendered:
 
 ```bash
-npm install
+cp .env.example .env.local
 ```
 
-### 3. Run the development server
+Supported variables:
+
+```bash
+PORTFOLIO_LOCATION=
+PORTFOLIO_EMAIL=
+PORTFOLIO_PHONE=
+PORTFOLIO_PHONE_HREF=
+PORTFOLIO_LINKEDIN_LABEL=
+PORTFOLIO_LINKEDIN_URL=
+PORTFOLIO_GITHUB_LABEL=
+PORTFOLIO_GITHUB_URL=
+```
+
+`.env.local` is ignored by git. Keep real contact values in local or deployment environment variables.
+
+## Development
 
 ```bash
 npm run dev
 ```
 
-### 4. Run checks
+Open `http://localhost:3000`.
+
+## Validation
 
 ```bash
 npm run lint
 npm run build
 ```
 
-## Fresh Start Commands
+The production preview can be checked locally with:
 
-If you want to fully recreate the local environment from scratch:
+```bash
+npm run start -- -p 3001
+```
+
+## Content
+
+Primary editable content lives in:
+
+- `src/content/portfolio.ts`
+
+Main rendered surfaces:
+
+- `app/page.tsx`
+- `app/resume/page.tsx`
+- `src/components/home/system-scene.tsx`
+- `src/components/home/hero-depth-visual.tsx`
+- `src/components/three/`
+
+## Deployment
+
+This project is ready for Vercel or any Next.js-compatible host. Configure the same environment variables from `.env.example` in the deployment platform before publishing.
+
+## Fresh Local Reset
 
 ```bash
 rm -rf node_modules .next
@@ -69,12 +109,3 @@ nvm use
 npm ci
 npm run dev
 ```
-
-## Content
-
-Editable site content lives in `src/content/portfolio.ts`.
-
-Sensitive contact details are not stored in the repository. Put them in `.env.local`
-for local development and in Vercel project environment variables for deployment.
-
-Copy `.env.example` to `.env.local` and fill in the values you want rendered on the site.

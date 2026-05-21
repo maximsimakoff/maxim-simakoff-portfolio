@@ -4,11 +4,14 @@
 
 :root {
   color-scheme: dark;
-  --background: #050505;
-  --foreground: #f5f3ef;
-  --muted: #a8a29e;
-  --line: rgba(245, 243, 239, 0.12);
+  --background: #070706;
+  --foreground: #f8f2ea;
+  --muted: #a9a29a;
+  --line: rgba(248, 242, 234, 0.13);
   --panel: rgba(255, 255, 255, 0.035);
+  --coral: #ff6b57;
+  --rose: #d95f8d;
+  --blue: #8fb7ff;
 }
 
 html {
@@ -20,10 +23,8 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.09), transparent 26%),
-    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.06), transparent 24%),
-    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.04), transparent 34%),
-    linear-gradient(180deg, #0b0b0b 0%, #050505 30%, #040404 100%);
+    linear-gradient(90deg, rgba(255, 107, 87, 0.055), transparent 22%, transparent 78%, rgba(143, 183, 255, 0.05)),
+    linear-gradient(180deg, #10100f 0%, #070706 32%, #050505 100%);
   color: var(--foreground);
   font-family: "Avenir Next", "Segoe UI", sans-serif;
   text-rendering: optimizeLegibility;
@@ -49,22 +50,76 @@ a {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 110px 110px;
-  mask-image: radial-gradient(circle at center, black 30%, transparent 86%);
-  opacity: 0.45;
+    linear-gradient(rgba(248, 242, 234, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 242, 234, 0.026) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: linear-gradient(180deg, black, transparent 88%);
+  opacity: 0.62;
 }
 
 @layer components {
-  .panel {
-    @apply relative overflow-hidden rounded-panel border border-line bg-panel backdrop-blur-md;
+  .terminal-page {
+    background:
+      radial-gradient(circle at 68% 16%, rgba(36, 72, 101, 0.18), transparent 34%),
+      radial-gradient(circle at 8% 12%, rgba(255, 107, 87, 0.09), transparent 28%),
+      linear-gradient(180deg, #061017 0%, #03070b 100%);
+    color: var(--foreground);
+  }
+
+  .terminal-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
     background-image:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-      linear-gradient(140deg, rgba(255, 255, 255, 0.03), transparent 40%);
+      linear-gradient(rgba(174, 197, 221, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(174, 197, 221, 0.035) 1px, transparent 1px);
+    background-size: 74px 74px;
+    mask-image: linear-gradient(180deg, black, transparent 88%);
+    opacity: 0.58;
+  }
+
+  .terminal-sidebar {
+    background:
+      radial-gradient(circle at 0% 12%, rgba(255, 107, 87, 0.1), transparent 34%),
+      linear-gradient(180deg, rgba(8, 16, 22, 0.88), rgba(3, 7, 11, 0.96));
+    scrollbar-color: rgba(255, 107, 87, 0.45) transparent;
+    scrollbar-width: thin;
+  }
+
+  .terminal-sidebar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .terminal-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .terminal-sidebar::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(255, 107, 87, 0.42);
+  }
+
+  .terminal-section {
+    @apply border-b border-terminal-line px-6 py-8 sm:px-10 sm:py-10;
+  }
+
+  .terminal-tag {
+    @apply rounded border border-terminal-line bg-white/[0.018] px-3 py-1.5 font-mono text-xs text-stone-400;
+  }
+
+  .terminal-button {
+    @apply inline-flex items-center justify-center rounded border border-coral/45 bg-coral/10 px-4 py-3 font-mono text-sm text-coral transition hover:bg-coral hover:text-black;
+  }
+
+  .panel {
+    @apply relative overflow-hidden rounded-lg border border-line bg-panel backdrop-blur-md;
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+      linear-gradient(140deg, rgba(255, 107, 87, 0.035), transparent 36%);
     box-shadow:
-      0 24px 70px rgba(0, 0, 0, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      0 18px 54px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.055);
   }
 
   .panel::before {
@@ -73,34 +128,146 @@ a {
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 28%);
-    opacity: 0.55;
+    background: linear-gradient(90deg, rgba(255, 107, 87, 0.09), transparent 28%, rgba(143, 183, 255, 0.07));
+    opacity: 0.28;
   }
 
   .section-spacing {
-    @apply mt-20 sm:mt-24 lg:mt-28;
+    @apply mt-14 sm:mt-16 lg:mt-20;
   }
 
   .eyebrow {
-    @apply font-mono text-xs uppercase tracking-[0.28em] text-stone-500;
+    @apply font-mono text-[0.68rem] uppercase tracking-[0.22em] text-stone-500;
   }
 
   .button-primary {
-    @apply inline-flex items-center justify-center rounded-full border border-stone-200 bg-stone-100 px-5 py-3 text-sm font-medium text-stone-950 transition duration-300 hover:-translate-y-0.5 hover:bg-white;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.08);
+    @apply inline-flex items-center justify-center rounded-full border border-transparent bg-[var(--coral)] px-4 py-2.5 text-sm font-semibold text-black transition duration-200 hover:-translate-y-0.5 hover:bg-[#ff806e];
+    box-shadow: 0 10px 26px rgba(255, 107, 87, 0.22);
   }
 
   .button-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-line bg-white/[0.03] px-5 py-3 text-sm font-medium text-stone-100 transition duration-300 hover:-translate-y-0.5 hover:border-stone-300/30 hover:bg-white/[0.05];
+    @apply inline-flex items-center justify-center rounded-full border border-line bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-stone-100 transition duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-white/[0.06];
   }
 
   .tag {
-    @apply inline-flex items-center rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone-400;
+    @apply inline-flex items-center rounded-full border border-line bg-white/[0.03] px-2.5 py-1 font-mono text-[0.66rem] uppercase tracking-[0.14em] text-stone-400;
+  }
+
+  .section-rule {
+    @apply border-t border-line pt-10 sm:pt-12;
+  }
+
+  .hairline {
+    @apply h-px bg-gradient-to-r from-transparent via-line to-transparent;
+  }
+
+  .accent-text {
+    color: var(--coral);
+  }
+
+  .operating-flow-line {
+    stroke-dasharray: 0.045 0.055;
+    animation: operating-line-drift 8s linear infinite;
+  }
+
+  .operating-flow-line-strong {
+    stroke-dasharray: 0.06 0.05;
+    animation-duration: 6.5s;
+  }
+
+  .operating-flow-dot {
+    fill: rgba(245, 243, 239, 0.9);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.48));
+  }
+
+  .operating-flow-dot-strong {
+    fill: rgba(255, 255, 255, 0.96);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.62));
+  }
+
+  .operating-node-card {
+    transform: translate(-50%, -50%) perspective(900px) rotateY(-13deg) rotateX(5deg);
+    transform-style: preserve-3d;
+    animation: operating-card-float 7s ease-in-out infinite;
+  }
+
+  .operating-node-card:nth-of-type(2n) {
+    animation-delay: -1.7s;
+  }
+
+  .operating-node-card:nth-of-type(3n) {
+    animation-delay: -3.1s;
+  }
+
+  .operating-destination-card {
+    transform: translate(-50%, -50%) perspective(900px) rotateY(12deg) rotateX(4deg);
+    transform-style: preserve-3d;
+    animation: operating-destination-float 8s ease-in-out infinite;
+  }
+
+  .operating-hub-ring {
+    animation: operating-ring-pulse 3.4s ease-in-out infinite;
+  }
+
+  .operating-hub-ring-delay {
+    animation-delay: -1.4s;
+  }
+}
+
+@keyframes operating-line-drift {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+@keyframes operating-card-float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) perspective(900px) rotateY(-13deg) rotateX(5deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) perspective(900px) rotateY(-10deg) rotateX(6deg) translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes operating-destination-float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) perspective(900px) rotateY(12deg) rotateX(4deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) perspective(900px) rotateY(9deg) rotateX(5deg) translate3d(0, -7px, 0);
+  }
+}
+
+@keyframes operating-ring-pulse {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: scale(1.06);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .operating-flow-line,
+  .operating-node-card,
+  .operating-destination-card,
+  .operating-hub-ring {
+    animation: none;
   }
 }

@@ -73,37 +73,36 @@ export type ProjectItem = {
 export const portfolioContent = {
   meta: {
     description:
-      "Portfolio and resume site for Maxim Simakoff, focused on internal platforms, workflow systems, and full-stack engineering with infrastructure awareness."
+      "Interactive resume for Maxim Simakoff, focused on revenue systems, AI workflows, and product engineering."
   },
   nav: [
-    { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
     { label: "Stack", href: "#stack" },
-    { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" }
   ] satisfies NavItem[],
   person: {
     name: "Maxim Simakoff",
     role:
-      "Full-stack engineer building internal systems, workflow software, and infra-aware products.",
-    snapshot: "I build software that turns messy operations into clear systems.",
+      "Revenue systems, AI workflows, and product engineering.",
+    snapshot: "I turn messy operating work into fast, usable software.",
     statusNote:
-      "Current focus: relationship management and investor workflows."
+      "Current focus: relationship management, investor workflows, and AI-assisted research."
   },
   hero: {
-    eyebrow: "Portfolio",
-    title: "Full-stack systems for real internal workflows.",
+    eyebrow: "Live portfolio",
+    title: "Systems that make work move.",
     description:
-      "At Tribe Capital, I built tools that help the investment team review investor relationships and follow up on opportunities."
+      "I build practical full-stack tools for teams that need clearer context, faster decisions, and less operational drag."
   },
   speed: {
     eyebrow: "Operating view",
-    title: "Decision-ready context in seconds.",
+    title: "Context, routes, actions.",
     description: "",
     statValue: 2,
     statLabel: "",
     statNote:
-      "Client history, pipeline status, and portfolio signal arrive in one pass.",
+      "Client history, pipeline state, and portfolio signal arrive in one pass.",
     sources: [
       {
         label: "Clients",
@@ -119,21 +118,21 @@ export const portfolioContent = {
       }
     ] satisfies SpeedSignal[],
     destinationLabel: "Leadership view",
-    destinationTitle: "CEO's Dream Master Control Panel",
+    destinationTitle: "Operating cockpit",
     destinationFocus: "Investments",
     takeaways: [
       {
         label: "Decision speed",
-        value: "Fast enough to support live discussion."
+        value: "Built for live decisions."
       },
       {
         label: "Clarity",
-        value: "Readable for operators and leadership."
+        value: "Readable across teams."
       }
     ] satisfies SignalItem[]
   } satisfies SpeedSectionContent,
   about: {
-    title: "How I work.",
+    title: "How I work",
     description: "",
     paragraphs: [],
     principles: [
@@ -159,30 +158,29 @@ export const portfolioContent = {
   },
   featuredExperience: {
     company: "Tribe Capital",
-    role: "Internal Systems / Full-Stack Engineering",
+    role: "Full-Stack + AI Engineer",
     meta: ["most recent", "high ownership"],
     spotlight:
-      "Custom CRM, investor pipeline, and workflow systems built end to end.",
+      "Custom CRM, investor pipeline, and workflow systems, built end to end.",
     summary:
-      "Built internal tools for managing investor relationships and tracking opportunities, from initial product design through daily use.",
+      "Owned product design and engineering for tools the investment team uses to research relationships and track opportunities.",
     bullets: [
       "Built tools for looking up investor relationships and reviewing past conversations.",
-      "Designed an investor pipeline system that improved visibility and execution across internal workflows.",
-      "Owned product design, implementation, and iteration with the people using the tools.",
-      "Made it easier for the team to review relationship history before a follow-up."
+      "Designed investor pipeline tooling for ownership, status, and next actions.",
+      "Owned product design, implementation, and iteration with the people using the tools."
     ],
     pillars: [
       {
         label: "Workflow",
-        value: "Custom CRM and investor tooling built around how teams actually operate."
+        value: "CRM and investor tooling shaped around the team's real workflow."
       },
       {
         label: "Visibility",
-        value: "Pipeline state, ownership, and next actions surfaced in one usable layer."
+        value: "Pipeline state, ownership, and next actions surfaced in one layer."
       },
       {
         label: "Full-stack",
-        value: "Frontend, backend, APIs, and integration logic owned end to end."
+        value: "Frontend, backend, APIs, and integration logic owned together."
       },
       {
         label: "Delivery",
@@ -226,6 +224,36 @@ export const portfolioContent = {
   ] satisfies ExperienceItem[],
   projects: [
     {
+      name: "Tribe Capital - HubClaw",
+      label: "AI research assistant",
+      period: "2026",
+      description:
+        "A research assistant for investor questions about companies and past conversations.",
+      detail:
+        "Team members can look up a relationship, revisit meeting notes, or prepare for a follow-up. Answers include citations they can check.",
+      tags: [
+        "Investment research",
+        "Natural language search",
+        "Source attribution"
+      ],
+      links: []
+    },
+    {
+      name: "Tribe Capital - LP Dashboard",
+      label: "investor reporting system",
+      period: "2026",
+      description:
+        "An internal LP dashboard for Tribe Capital that brings investor, portfolio, and reporting workflows into a cleaner operating view.",
+      detail:
+        "Focused on turning fragmented fund and relationship data into readable dashboards for faster review, follow-up, and investor context.",
+      tags: [
+        "Investor reporting",
+        "Data visualization",
+        "Portfolio analytics"
+      ],
+      links: []
+    },
+    {
       name: "Polyglot",
       label: "AI developer tool",
       period: "2024",
@@ -260,57 +288,57 @@ export const portfolioContent = {
     }
   ] satisfies ProjectItem[],
   stackMap: {
-    title: "Technical stack.",
+    title: "Technical stack",
     description: "",
     intro: "",
     clusters: [
       {
-        id: "workflow",
-        label: "Workflow systems",
-        description: "Internal products tied closely to operating workflows.",
+        id: "core",
+        label: "Core languages",
+        description: "Implementation layer across frontend, backend, scripts, and ops.",
         detail:
-          "Tools for reviewing relationships, checking the status of opportunities, and planning follow-ups.",
-        items: ["Relationship management", "CRM", "Investor pipeline", "Internal tooling"]
+          "Languages and formats I use for application code, automation, and data.",
+        items: ["Python", "TypeScript/TSX", "JavaScript", "Bash", "Dockerfile", "YAML"]
       },
       {
         id: "frontend",
         label: "Frontend",
         description: "Interfaces for dense workflows and product-facing tools.",
         detail:
-          "React and Next.js for structured UI, with Tailwind and motion used to keep complex surfaces calm and readable.",
-        items: ["React", "Next.js", "Tailwind", "Framer Motion"]
+          "Tools for building interfaces, handling forms, and visualizing data.",
+        items: ["React 18", "Vite", "Tailwind", "shadcn/ui", "Radix UI", "React Query"]
       },
       {
-        id: "backend",
-        label: "Backend",
-        description: "APIs, services, integrations, and system behavior.",
+        id: "data-analysis",
+        label: "Data & analysis",
+        description: "Tools for organizing, querying, and exploring data.",
         detail:
-          "Backend work centered on service logic, API design, and the integration work that connects product surfaces to operational data.",
-        items: ["FastAPI", "APIs", "Services", "Integrations"]
+          "I use databases, data frames, and file formats to make information easier to analyze.",
+        items: ["PostgreSQL", "pandas", "NumPy", "SQL", "Parquet"]
       },
       {
-        id: "infra",
-        label: "Infra / delivery",
-        description: "Deployment, environments, and security-minded shipping.",
+        id: "integrations",
+        label: "APIs & integrations",
+        description: "Tools for connecting applications and working with APIs.",
         detail:
-          "Version control, container tooling, and Linux fundamentals for developing and maintaining software.",
-        items: ["Docker", "Vercel", "Git", "Linux", "Hardening"]
+          "I use API frameworks, SDKs, and validation libraries to build integrations.",
+        items: ["FastAPI", "Pydantic", "CRM APIs", "Messaging SDKs"]
       },
       {
-        id: "languages",
-        label: "Languages",
-        description: "Core implementation mix from product code to lower-level systems work.",
+        id: "ops",
+        label: "Deployment / ops",
+        description: "Tools for packaging and maintaining software.",
         detail:
-          "TypeScript anchors current product work, with Python, Java, C, and SQL supporting data handling and lower-level systems work.",
-        items: ["TypeScript", "JavaScript", "Python", "Java", "C", "SQL"]
+          "I work with containers, command-line tools, version control, and Linux.",
+        items: ["Docker", "Docker Compose", "Git", "Linux"]
       },
       {
-        id: "data",
-        label: "Data / systems",
-        description: "Structure, reporting, and workflow visibility.",
+        id: "reports",
+        label: "Reports / docs",
+        description: "Generated reporting artifacts and file workflows.",
         detail:
-          "The focus here is making systems legible through reporting, workflow visibility, and clear operational data.",
-        items: ["Reporting", "Pipelines", "Visibility", "Workflow data"]
+          "File formats, plotting libraries, and document tools for preparing readable reports.",
+        items: ["Parquet", "CSV", "PDF", "PNG", "Matplotlib", "ReportLab"]
       }
     ] satisfies StackCluster[]
   },
@@ -322,28 +350,32 @@ export const portfolioContent = {
   },
   skills: [
     {
-      label: "Languages",
-      items: ["TypeScript", "JavaScript", "Python", "Java", "C", "SQL"]
+      label: "Core",
+      items: ["Python", "TypeScript/TSX", "JavaScript", "HTML/CSS", "Bash", "Dockerfile", "YAML", "JSON"]
     },
     {
       label: "Frontend",
-      items: ["React", "Next.js", "Tailwind", "Framer Motion"]
+      items: ["React 18", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "React Query", "React Hook Form", "Recharts"]
     },
     {
-      label: "Backend / workflow",
-      items: ["FastAPI", "APIs", "HubSpot integrations", "Internal tooling"]
+      label: "Data & analysis",
+      items: ["PostgreSQL", "pandas", "NumPy", "Parquet", "Pydantic"]
     },
     {
-      label: "Infra / delivery",
-      items: ["Docker", "Vercel", "Git", "Linux", "Hardening"]
+      label: "APIs & integrations",
+      items: ["FastAPI", "HubSpot CRM APIs", "Slack SDK", "Twilio", "OpenAI Responses API", "OAuth/OIDC"]
     },
     {
-      label: "Working style",
-      items: ["Product thinking", "Clear communication", "Iteration", "Ownership"]
+      label: "Development tools",
+      items: ["Docker Compose", "Git", "Linux", "Cloud Run", "Artifact Registry", "gcloud"]
+    },
+    {
+      label: "Reports / files",
+      items: ["Parquet", "CSV", "JSON", "PDF", "PNG", "Matplotlib", "ReportLab", "pypdf"]
     }
   ],
   contact: {
-    title: "Open to full-stack roles.",
+    title: "Open to full-stack roles",
     description: ""
   }
 };
