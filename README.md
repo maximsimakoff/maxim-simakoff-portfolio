@@ -97,7 +97,7 @@ Main rendered surfaces:
 
 This project is ready for Vercel or any Next.js-compatible host. Configure the same environment variables from `.env.example` in the deployment platform before publishing.
 
-For GitHub Pages, run `npm run build:pages` and publish the contents of `out/`, including `.nojekyll`. This build uses the repository path `/maxim-simakoff-portfolio/`. After attaching a custom domain, run `npm run build:pages -- --custom-domain` to generate the site for the domain root. Both static builds read contact configuration at build time.
+For GitHub Pages at [max.simakoff.com](https://max.simakoff.com/), run `npm run build:pages` and publish the contents of `out/` to the root of the `gh-pages` branch. The export uses root-relative URLs and includes the `CNAME` and `.nojekyll` files. To preview the original repository path locally, run `npm run build:pages -- --project-path`. Both static builds read contact configuration at build time.
 
 ## Fresh Local Reset
 
