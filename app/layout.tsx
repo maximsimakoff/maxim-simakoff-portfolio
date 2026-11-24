@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { getSharingMetadata } from "@/lib/sharing-metadata";
 import "./globals.css";
 
 const geist = localFont({
@@ -18,14 +17,8 @@ const geistMono = localFont({
   preload: false
 });
 
-const title = "Maxim Simakoff | Engineering Portfolio";
-const description = "Selected software projects and experience from Maxim Simakoff, AI Engineer at Tribe Capital and Forward Deployed Engineer at SmartStart Education.";
-
 export const metadata: Metadata = {
-  title: { default: title, template: "%s | Maxim Simakoff" },
-  description,
-  icons: { icon: `${process.env.NEXT_PUBLIC_PORTFOLIO_BASE_PATH ?? ""}/favicon.svg` },
-  ...getSharingMetadata("/", title, description)
+  icons: { icon: `${process.env.NEXT_PUBLIC_PORTFOLIO_BASE_PATH ?? ""}/favicon.svg` }
 };
 
 export const viewport: Viewport = {

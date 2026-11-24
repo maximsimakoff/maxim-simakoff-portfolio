@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { PortfolioHeader } from "@/components/portfolio-header";
+import { StructuredData } from "@/components/structured-data";
 import {
   careerRoles,
   education,
@@ -10,15 +11,16 @@ import {
   workProjects
 } from "@/content/career";
 import { getPrivateProfile } from "@/lib/private-profile";
-import { getSharingMetadata } from "@/lib/sharing-metadata";
+import { getSharingMetadata, siteOrigin } from "@/lib/sharing-metadata";
 import styles from "./resume.module.css";
 
-const description = "Maxim Simakoff’s engineering experience, selected projects, and education.";
+const title = "Résumé | Maxim Simakoff";
+const description = "Maxim Simakoff’s résumé covers his engineering work at Tribe Capital and SmartStart Education, selected projects, and computer science studies at UMass Amherst.";
 
 export const metadata: Metadata = {
-  title: "Résumé",
+  title: { absolute: title },
   description,
-  ...getSharingMetadata("/resume/", "Résumé | Maxim Simakoff", description)
+  ...getSharingMetadata("/resume/", title, description)
 };
 
 export default function ResumePage() {
@@ -40,6 +42,14 @@ export default function ResumePage() {
 
   return (
     <div className={styles.page}>
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        url: `${siteOrigin}/resume/`,
+        name: title,
+        about: { "@id": `${siteOrigin}/#person` },
+        isPartOf: { "@id": `${siteOrigin}/#website` }
+      }} />
       <a className="skip-link" href="#main-content">Skip to résumé</a>
       <PortfolioHeader />
       <main className={styles.sheet} id="main-content">

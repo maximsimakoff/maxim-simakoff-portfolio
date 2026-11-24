@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const siteOrigin = "https://max.simakoff.com";
+export const siteOrigin = "https://max.simakoff.com";
 const shareImage = {
   url: `${siteOrigin}/workstation-share.jpg`,
   type: "image/jpeg",

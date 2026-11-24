@@ -1,18 +1,60 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PortfolioHeader } from "@/components/portfolio-header";
 import { Icon, PixelMark } from "@/components/portfolio-icon";
+import { StructuredData } from "@/components/structured-data";
 import { WorkGallery } from "@/components/work-gallery";
 import { Workstation } from "@/components/workstation/workstation";
 import { careerRoles, cloudPlatforms, education, profileLinks, toolGroups } from "@/content/career";
 import { getPrivateProfile } from "@/lib/private-profile";
+import { getSharingMetadata, siteOrigin } from "@/lib/sharing-metadata";
+
+const title = "Maxim Simakoff | Engineering Portfolio";
+const description = "Explore Maxim Simakoff’s engineering portfolio, including AI research tools for investment teams, investor dashboards, and adaptive SAT preparation software.";
+const homepage = `${siteOrigin}/`;
+
+export const metadata: Metadata = {
+  title: { absolute: title },
+  description,
+  ...getSharingMetadata("/", title, description)
+};
 
 export default function Home() {
   const contact = getPrivateProfile();
   const linkedin = contact.linkedin?.href || profileLinks.linkedin;
   const github = contact.github?.href || profileLinks.github;
+  const currentRoles = careerRoles.filter(({ current }) => current);
 
   return (
     <>
+      <StructuredData data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": `${homepage}#website`,
+            name: "Maxim Simakoff",
+            url: homepage
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": `${homepage}#profile`,
+            url: homepage,
+            isPartOf: { "@id": `${homepage}#website` },
+            mainEntity: {
+              "@type": "Person",
+              "@id": `${homepage}#person`,
+              name: "Maxim Simakoff",
+              url: homepage,
+              description: currentRoles.map(({ role, company, employmentType }) =>
+                `${role} (${employmentType.toLowerCase()}) at ${company}`
+              ).join(" and "),
+              worksFor: currentRoles.map(({ company }) => ({ "@type": "Organization", name: company })),
+              sameAs: [linkedin, github]
+            }
+          }
+        ]
+      }} />
       <a className="skip-link" href="#main-content">Skip to content</a>
       <PortfolioHeader />
       <main id="main-content">
