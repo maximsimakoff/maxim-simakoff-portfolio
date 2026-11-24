@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { getSharingMetadata } from "@/lib/sharing-metadata";
 import "./globals.css";
 
 const geist = localFont({
@@ -24,8 +25,7 @@ export const metadata: Metadata = {
   title: { default: title, template: "%s | Maxim Simakoff" },
   description,
   icons: { icon: `${process.env.NEXT_PUBLIC_PORTFOLIO_BASE_PATH ?? ""}/favicon.svg` },
-  openGraph: { title, description, type: "website" },
-  twitter: { card: "summary", title, description }
+  ...getSharingMetadata("/", title, description)
 };
 
 export const viewport: Viewport = {

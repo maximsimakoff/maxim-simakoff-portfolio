@@ -10,11 +10,15 @@ import {
   workProjects
 } from "@/content/career";
 import { getPrivateProfile } from "@/lib/private-profile";
+import { getSharingMetadata } from "@/lib/sharing-metadata";
 import styles from "./resume.module.css";
+
+const description = "Maxim Simakoff’s engineering experience, selected projects, and education.";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: "Maxim Simakoff’s engineering experience, selected projects, and education."
+  description,
+  ...getSharingMetadata("/resume/", "Résumé | Maxim Simakoff", description)
 };
 
 export default function ResumePage() {
