@@ -1,0 +1,186 @@
+.page {
+  min-height: 100svh;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.sheet {
+  width: min(100% - 64px, 1180px);
+  margin-inline: auto;
+  padding: clamp(48px, 7vw, 100px) 0 88px;
+}
+
+.sheet :is(h1, h2, h3, p, dl, dd) {
+  margin: 0;
+}
+
+.sheet :is(section, [id]) {
+  scroll-margin-top: 6rem;
+}
+
+.intro {
+  padding-bottom: clamp(32px, 5vw, 60px);
+  border-bottom: 1px solid var(--ink);
+}
+
+.roleMeta,
+.contacts {
+  display: flex;
+  align-items: center;
+}
+
+.roleMeta {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+}
+
+.kicker,
+.company,
+.period,
+.contacts {
+  font-family: var(--mono), monospace;
+  font-size: 0.75rem;
+}
+
+.kicker,
+.company {
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+}
+
+.kicker,
+.company,
+.project a {
+  color: var(--violet);
+}
+
+.intro h1 {
+  margin: clamp(20px, 3vw, 38px) 0 20px;
+  font-size: clamp(3rem, 7vw, 6.25rem);
+  font-weight: 560;
+  line-height: 1.01;
+  letter-spacing: -0.071em;
+}
+
+.introText {
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.contacts {
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin-top: 22px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.contacts a,
+.project a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.contacts a:hover,
+.project a:hover {
+  color: var(--violet);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 110px);
+  margin-top: clamp(32px, 5vw, 60px);
+}
+
+.sheet h2 {
+  margin-bottom: 22px;
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: 550;
+  line-height: 1.1;
+  letter-spacing: -0.055em;
+}
+
+.role {
+  padding: 23px 0;
+  border-top: 1px solid var(--line);
+}
+
+.role h3 {
+  margin: 9px 0 7px;
+  font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+  font-weight: 580;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+}
+
+.period,
+.role p,
+.block p,
+.skills dd,
+.languages dd {
+  color: var(--muted);
+}
+
+.period {
+  letter-spacing: -0.04em;
+}
+
+.employmentType {
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.role p,
+.block p,
+.skills,
+.languages {
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.rail {
+  min-width: 0;
+}
+
+.block + .block {
+  margin-top: 34px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.block h3,
+.skills dt,
+.languages dt {
+  font-weight: 610;
+}
+
+.block h3 {
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.project + .project,
+.skills > div + div {
+  margin-top: 14px;
+}
+
+.languages > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 12px;
+}
+
+@media (max-width: 760px) {
+  .sheet { width: min(100% - 40px, 600px); }
+  .body { grid-template-columns: 1fr; gap: 30px; }
+  .contacts a { display: inline-flex; align-items: center; min-height: 36px; }
+  .rail { padding-top: 28px; border-top: 1px solid var(--ink); }
+  .role:last-child { padding-bottom: 0; }
+}

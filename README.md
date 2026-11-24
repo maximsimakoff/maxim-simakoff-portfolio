@@ -1,6 +1,6 @@
 # Maxim Simakoff Portfolio
 
-Terminal-style interactive portfolio and resume site for Maxim Simakoff. The homepage uses a split operator-console layout, a React Three Fiber operating map, project/experience sections, and a private-contact configuration layer for deployment.
+Engineering portfolio and résumé for Maxim Simakoff. The homepage features an interactive model of a vintage workstation, selected projects, and recent experience drawn from his LinkedIn profile.
 
 ## Stack
 
@@ -8,18 +8,15 @@ Terminal-style interactive portfolio and resume site for Maxim Simakoff. The hom
 - React 19
 - TypeScript
 - Tailwind CSS
-- React Three Fiber, Drei, and Three.js
-- Framer Motion
+- Three.js
 - ESLint
 
 ## Features
 
-- Terminal-inspired homepage with sticky/scrollable sidebar navigation.
-- Active sidebar state that tracks clicks, hashes, and section scroll position.
-- 3D operating map with graceful non-WebGL fallback components.
-- Resume page with working in-page navigation for projects, experience, stack, and contact.
-- Content-driven project, experience, stack, and resume data in one TypeScript module.
-- Private contact details loaded from environment variables instead of hard-coded public repo data.
+- The workstation animates automatically. Drag or use the arrow keys to rotate it. Home resets the view. Explode slides its components apart in stages, and Assemble reverses the sequence from the current position.
+- A locally rendered poster appears while the model loads and on devices without WebGL 2. With reduced motion enabled, the idle camera stays still while the CRT and activity lights keep running.
+- Selected work opens with all six projects, grouped into professional projects and hackathon or coursework projects. Each illustration runs a local interactive demo. Click or tap the artwork, or focus it and press Enter or Space, to advance it manually. Select a project title for details and public links.
+- Contact environment variables override the public location and profile links. Email and phone appear when configured.
 
 ## Requirements
 
@@ -86,19 +83,21 @@ npm run start -- -p 3001
 
 Primary editable content lives in:
 
-- `src/content/portfolio.ts`
+- `src/content/career.ts`
 
 Main rendered surfaces:
 
 - `app/page.tsx`
 - `app/resume/page.tsx`
-- `src/components/home/system-scene.tsx`
-- `src/components/home/hero-depth-visual.tsx`
-- `src/components/three/`
+- `src/components/work-gallery.tsx`
+- `src/components/work-art.tsx`
+- `src/components/workstation/`
 
 ## Deployment
 
 This project is ready for Vercel or any Next.js-compatible host. Configure the same environment variables from `.env.example` in the deployment platform before publishing.
+
+For GitHub Pages, run `npm run build:pages` and publish the contents of `out/`, including `.nojekyll`. This build uses the repository path `/maxim-simakoff-portfolio/`. After attaching a custom domain, run `npm run build:pages -- --custom-domain` to generate the site for the domain root. Both static builds read contact configuration at build time.
 
 ## Fresh Local Reset
 

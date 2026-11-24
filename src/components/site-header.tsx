@@ -1,14 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { portfolioContent } from "@/content/portfolio";
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const isResume = pathname === "/resume";
+
   return (
-    <header className="sticky top-0 z-50 mx-auto w-full max-w-7xl px-5 pt-5 sm:px-8 lg:px-10">
-      <div className="relative border-b border-line bg-[#070706]/86 pb-4 backdrop-blur-xl">
-        <div className="flex items-center justify-between gap-5">
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="grid h-8 w-8 place-items-center rounded-full border border-white/15 bg-white/[0.04] text-xs font-semibold text-ink">
+    <header className="sticky top-0 z-50 mx-auto w-full max-w-7xl px-4 pt-3 sm:px-8 sm:pt-5 lg:px-10">
+      <div className="terminal-section-card relative px-3 py-3 sm:px-4">
+        <div className="flex items-center justify-between gap-4">
+          <Link href="/" className="flex min-h-10 items-center gap-2.5 rounded-md">
+            <span className="grid h-8 w-8 place-items-center rounded-md border border-coral/25 bg-coral/[0.08] font-mono text-[0.68rem] font-semibold text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.07)]">
               MS
             </span>
             <span className="text-sm font-medium text-stone-300">
@@ -16,12 +22,12 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-5 md:flex">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Resume sections">
             {portfolioContent.nav.map((item) => (
               <a
                 key={item.href}
-                href={item.href}
-                className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-stone-500 transition hover:text-stone-200"
+                href={isResume ? item.href : `/resume${item.href}`}
+                className="rounded-md px-3 py-2 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-stone-500 transition hover:bg-white/[0.035] hover:text-stone-200"
               >
                 {item.label}
               </a>
@@ -29,12 +35,28 @@ export function SiteHeader() {
           </nav>
 
           <Link
-            href="/resume"
-            className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-2 text-sm font-medium text-stone-200 transition hover:border-coral/50 hover:bg-coral/10 hover:text-ink"
+            href={isResume ? "/" : "/resume"}
+            className="inline-flex min-h-10 items-center rounded-md border border-white/10 bg-white/[0.035] px-3.5 py-2 font-mono text-xs text-stone-200 transition hover:border-coral/50 hover:bg-coral/10 hover:text-ink"
           >
-            Resume
+            {isResume ? "Portfolio" : "Resume"}
           </Link>
         </div>
+
+        <nav
+          aria-label="Mobile resume sections"
+          className="scrollbar-hidden -mx-1 mt-2 flex gap-0 overflow-x-auto border-t border-terminal-line px-1 pt-2 md:hidden"
+        >
+          {portfolioContent.nav.map((item, index) => (
+            <a
+              key={item.href}
+              href={isResume ? item.href : `/resume${item.href}`}
+              className="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-md px-2 font-mono text-[0.6rem] uppercase tracking-[0.1em] text-stone-400 transition active:bg-white/[0.05]"
+            >
+              <span className="text-coral/80">0{index + 1}</span>
+              {item.label}
+            </a>
+          ))}
+        </nav>
       </div>
     </header>
   );

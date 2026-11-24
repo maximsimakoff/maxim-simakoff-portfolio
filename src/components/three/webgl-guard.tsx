@@ -11,15 +11,7 @@ type WebGLGuardProps = {
 function canCreateWebGLContext() {
   if (typeof document === "undefined") return false;
 
-  const userAgent = navigator.userAgent.toLowerCase();
-
-  if (userAgent.includes("headlesschrome")) return false;
-  if (
-    typeof window.WebGLRenderingContext === "undefined" &&
-    typeof window.WebGL2RenderingContext === "undefined"
-  ) {
-    return false;
-  }
+  if (typeof window.WebGL2RenderingContext === "undefined") return false;
 
   const canvas = document.createElement("canvas");
   const options: WebGLContextAttributes = {
@@ -29,16 +21,7 @@ function canCreateWebGLContext() {
   };
 
   try {
-    const context =
-      canvas.getContext("webgl2", options) ||
-      canvas.getContext("webgl", options) ||
-      canvas.getContext("experimental-webgl", options);
-
-    if (context && "getExtension" in context) {
-      context.getExtension("WEBGL_lose_context")?.loseContext();
-    }
-
-    return Boolean(context);
+    return Boolean(canvas.getContext("webgl2", options));
   } catch {
     return false;
   }

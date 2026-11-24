@@ -1,0 +1,54 @@
+.stage {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  overflow: hidden;
+  color: #393248;
+  background: radial-gradient(ellipse at 35% 20%, #e6e0fa 0, #dbd3f4 50%, #cac0e8 100%);
+}
+.grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(#77659416 1px, transparent 1px), linear-gradient(90deg, #77659416 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: .66;
+}
+.model {
+  position: absolute;
+  inset: 0;
+  background: center / contain no-repeat;
+  -webkit-tap-highlight-color: transparent;
+}
+.stage[data-ready="true"] .model {
+  cursor: grab;
+  background-image: none;
+  touch-action: pan-y pinch-zoom;
+}
+.stage[data-ready="true"] .model:active { cursor: grabbing; }
+.model canvas { width: 100%; height: 100%; display: block; }
+.model:focus-visible { outline: 2px solid #64518b; outline-offset: -4px; }
+.explode {
+  position: absolute;
+  z-index: 2;
+  bottom: 15px;
+  right: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 11px;
+  min-height: 34px;
+  border: 1px solid #65557b44;
+  border-radius: 999px;
+  color: #44364e;
+  background: #f9f6ffb8;
+  font: 550 .75rem/1.15 ui-monospace, "Courier New", monospace;
+  cursor: pointer;
+}
+.explode:hover { background: #fcfaff; border-color: #65557b99; }
+.explode:focus-visible { outline: 2px solid #584578; outline-offset: 3px; }
+.explode svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 520px) {
+  .explode { bottom: 10px; right: 10px; min-height: 44px; }
+}

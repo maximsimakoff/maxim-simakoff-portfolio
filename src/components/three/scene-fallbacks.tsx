@@ -16,69 +16,111 @@ const stackNodes = [
 
 export function HeroSceneFallback() {
   const nodes = [
-    { label: "Infra", left: "25%", top: "28%", icon: "▭" },
-    { label: "Data", left: "24%", top: "58%", icon: "◖" },
-    { label: "AI", left: "50%", top: "74%", icon: "✣" },
-    { label: "Product", left: "75%", top: "28%", icon: "◇" },
-    { label: "Growth", left: "76%", top: "58%", icon: "↗" }
+    { code: "01", color: "#78a9ff", glyph: "//", label: "Infra", left: "20%", top: "38%" },
+    { code: "02", color: "#7ce8dd", glyph: "DB", label: "Data", left: "24%", top: "66%" },
+    { code: "03", color: "#b2a5ff", glyph: "AI", label: "AI", left: "50%", top: "78%" },
+    { code: "04", color: "#ff7b62", glyph: "PX", label: "Product", left: "80%", top: "38%" },
+    { code: "05", color: "#ff6fae", glyph: "+ +", label: "Growth", left: "76%", top: "66%" }
   ];
 
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-[inherit] bg-[radial-gradient(circle_at_50%_40%,rgba(255,107,87,0.14),transparent_28%),linear-gradient(180deg,rgba(8,20,30,0.9),rgba(2,7,11,0.98))]">
+    <div className="relative h-full w-full overflow-hidden rounded-[inherit] bg-[radial-gradient(circle_at_50%_42%,rgba(255,107,87,0.18),transparent_22%),radial-gradient(circle_at_20%_24%,rgba(120,169,255,0.08),transparent_30%),linear-gradient(180deg,#030a0f_0%,#02070b_100%)]">
       <div
         aria-hidden="true"
-        className="absolute inset-x-[8%] bottom-[12%] top-[16%] opacity-60"
+        className="absolute inset-x-[-10%] bottom-[-18%] top-[42%] opacity-60"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(174,197,221,0.11) 1px, transparent 1px), linear-gradient(90deg, rgba(174,197,221,0.11) 1px, transparent 1px)",
-          backgroundSize: "34px 34px",
-          transform: "perspective(720px) rotateX(62deg)",
-          transformOrigin: "50% 62%"
+            "linear-gradient(rgba(120,169,255,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(120,169,255,0.09) 1px, transparent 1px)",
+          backgroundSize: "30px 30px",
+          maskImage: "linear-gradient(to bottom, transparent, black 24%, transparent 86%)",
+          transform: "perspective(560px) rotateX(66deg)",
+          transformOrigin: "50% 76%"
         }}
       />
 
       <svg
-        className="absolute inset-0 h-full w-full"
-        viewBox="0 0 100 100"
         aria-hidden="true"
+        className="absolute inset-0 h-full w-full"
+        preserveAspectRatio="none"
+        viewBox="0 0 100 100"
       >
+        <ellipse
+          cx="50"
+          cy="63"
+          fill="none"
+          rx="33"
+          ry="12"
+          stroke="rgba(120,169,255,0.12)"
+          strokeWidth="0.28"
+        />
+        <ellipse
+          cx="50"
+          cy="63"
+          fill="none"
+          rx="24"
+          ry="8"
+          stroke="rgba(255,107,87,0.14)"
+          strokeWidth="0.22"
+        />
         {[
-          ["M50 45 C41 36 32 30 25 32", "rgba(143,183,255,0.7)"],
-          ["M50 45 C39 49 29 55 24 59", "rgba(255,141,104,0.75)"],
-          ["M50 45 C50 56 50 66 50 74", "rgba(255,107,87,0.78)"],
-          ["M50 45 C60 36 68 30 75 32", "rgba(217,95,141,0.75)"],
-          ["M50 45 C61 50 70 55 76 59", "rgba(255,107,87,0.72)"]
-        ].map(([d, stroke]) => (
+          ["M50 46 C40 33 30 34 20 38", "#78a9ff"],
+          ["M50 46 C38 49 30 59 24 66", "#7ce8dd"],
+          ["M50 46 C50 59 50 68 50 78", "#b2a5ff"],
+          ["M50 46 C61 32 71 33 80 38", "#ff7b62"],
+          ["M50 46 C63 49 70 59 76 66", "#ff6fae"]
+        ].map(([d, stroke], index) => (
           <path
             key={d}
+            className="nexus-fallback-route"
             d={d}
             fill="none"
             stroke={stroke}
             strokeLinecap="round"
-            strokeWidth="0.55"
+            strokeWidth="0.5"
+            style={{ animationDelay: `${index * -0.65}s` }}
           />
         ))}
       </svg>
 
-      <div className="absolute left-1/2 top-[42%] h-[5.6rem] w-[5.6rem] -translate-x-1/2 -translate-y-1/2 rounded-md border border-coral bg-coral/10 shadow-[0_0_42px_rgba(255,107,87,0.45),inset_0_0_28px_rgba(255,107,87,0.16)]">
-        <div className="absolute -top-7 left-1/2 -translate-x-1/2 rounded border border-coral/60 bg-black/60 px-2 py-1 font-mono text-sm text-coral">
-          CORE
+      <div className="absolute left-1/2 top-[46%] h-20 w-20 -translate-x-1/2 -translate-y-1/2 sm:h-28 sm:w-28">
+        <div className="nexus-fallback-ring absolute -inset-7 rounded-full border border-coral/25 sm:-inset-10" />
+        <div className="nexus-fallback-ring-reverse absolute -inset-4 rotate-45 rounded-[42%] border border-powder/25 sm:-inset-6" />
+        <div className="absolute inset-0 rotate-45 rounded-[30%] border border-coral/80 bg-coral/[0.08] shadow-[0_0_54px_rgba(255,107,87,0.48),inset_0_0_30px_rgba(255,107,87,0.16)]" />
+        <div className="nexus-fallback-core absolute inset-[24%] rounded-full border border-[#ffb197]/70 bg-[#ff654b]/35 shadow-[0_0_28px_rgba(255,92,68,0.95),inset_0_0_12px_rgba(255,255,255,0.5)]" />
+        <div className="absolute left-1/2 top-1/2 h-px w-[145%] -translate-x-1/2 -translate-y-1/2 rotate-[18deg] bg-gradient-to-r from-transparent via-coral/70 to-transparent" />
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded border border-coral/40 bg-black/65 px-2.5 py-1 font-mono text-[0.56rem] uppercase tracking-[0.16em] text-stone-100 backdrop-blur-md sm:text-[0.66rem]">
+          <span className="mr-1.5 text-coral">NX-0</span>
+          Systems nexus
         </div>
-        <div className="absolute inset-3 border border-coral/25" />
       </div>
 
       {nodes.map((node) => (
         <div
           key={node.label}
-          className="absolute -translate-x-1/2 -translate-y-1/2"
+          className="nexus-fallback-node absolute -translate-x-1/2 -translate-y-1/2"
           style={{ left: node.left, top: node.top }}
         >
-          <div className="mx-auto mb-2 w-fit rounded border border-white/20 bg-black/55 px-2 py-1 font-mono text-sm text-stone-200">
+          <div
+            className="mx-auto mb-1.5 w-fit whitespace-nowrap rounded border bg-black/65 px-2 py-1 font-mono text-[0.52rem] uppercase tracking-[0.12em] text-stone-200 backdrop-blur-md sm:text-[0.62rem]"
+            style={{ borderColor: `${node.color}55` }}
+          >
+            <span className="mr-1.5" style={{ color: node.color }}>
+              {node.code}
+            </span>
             {node.label}
           </div>
-          <div className="grid h-16 w-24 place-items-center rounded-lg border border-white/10 bg-[#111923]/80 shadow-[0_22px_44px_rgba(0,0,0,0.35)]">
-            <span className="font-mono text-3xl text-powder drop-shadow-[0_0_14px_rgba(143,183,255,0.7)]">
-              {node.icon}
+          <div
+            className="grid h-10 w-14 place-items-center rounded-md border bg-[#071019]/85 shadow-[0_18px_38px_rgba(0,0,0,0.4)] sm:h-14 sm:w-20"
+            style={{
+              borderColor: `${node.color}44`,
+              boxShadow: `0 18px 38px rgba(0,0,0,0.4), 0 0 24px ${node.color}18`
+            }}
+          >
+            <span
+              className="font-mono text-xs font-semibold tracking-[0.12em] sm:text-base"
+              style={{ color: node.color, textShadow: `0 0 14px ${node.color}` }}
+            >
+              {node.glyph}
             </span>
           </div>
         </div>

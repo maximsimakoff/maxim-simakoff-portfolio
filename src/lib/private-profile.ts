@@ -32,7 +32,7 @@ function makeLink(label: string, value: string, href: string): PrivateLink | nul
 }
 
 export function getPrivateProfile(): PrivateProfile {
-  const location = clean(process.env.PORTFOLIO_LOCATION);
+  const location = clean(process.env.PORTFOLIO_LOCATION) || "Massachusetts";
   const emailValue = clean(process.env.PORTFOLIO_EMAIL);
   const phoneValue = clean(process.env.PORTFOLIO_PHONE);
   const phoneHref = clean(process.env.PORTFOLIO_PHONE_HREF);

@@ -1,37 +1,41 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 
-import { portfolioContent } from "@/content/portfolio";
+const geist = localFont({
+  src: "../node_modules/next/dist/next-devtools/server/font/geist-latin.woff2",
+  variable: "--font-geist",
+  weight: "100 900",
+  display: "swap"
+});
+
+const geistMono = localFont({
+  src: "../node_modules/next/dist/next-devtools/server/font/geist-mono-latin.woff2",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+  display: "swap",
+  preload: false
+});
+
+const title = "Maxim Simakoff | Engineering Portfolio";
+const description = "Selected software projects and experience from Maxim Simakoff, AI Engineer at Tribe Capital and Forward Deployed Engineer at SmartStart Education.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
-  title: {
-    default: `${portfolioContent.person.name} | Interactive Resume`,
-    template: `%s | ${portfolioContent.person.name}`
-  },
-  description: portfolioContent.meta.description,
-  icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }]
-  },
-  openGraph: {
-    title: `${portfolioContent.person.name} | Interactive Resume`,
-    description: portfolioContent.meta.description,
-    type: "website"
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${portfolioContent.person.name} | Portfolio`,
-    description: portfolioContent.meta.description
-  }
+  title: { default: title, template: "%s | Maxim Simakoff" },
+  description,
+  icons: { icon: `${process.env.NEXT_PUBLIC_PORTFOLIO_BASE_PATH ?? ""}/favicon.svg` },
+  openGraph: { title, description, type: "website" },
+  twitter: { card: "summary", title, description }
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#f8f7f2"
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -200,6 +200,17 @@ export const portfolioContent = {
   experienceNotice: "",
   experience: [
     {
+      company: "SmartStart Education",
+      role: "Product Engineering",
+      meta: ["current", "education"],
+      summary:
+        "Building the SAT platform across product and engineering.",
+      bullets: [
+        "Working on the core product and the systems behind it."
+      ],
+      tags: ["Product Engineering", "EdTech", "SaaS"]
+    },
+    {
       company: "School16.co",
       role: "Growth / Research",
       meta: ["earlier", "remote"],
@@ -254,6 +265,17 @@ export const portfolioContent = {
       links: []
     },
     {
+      name: "SmartStart Education - SAT Platform",
+      label: "education platform",
+      period: "Current",
+      description:
+        "An SAT platform currently being built at SmartStart Education.",
+      detail:
+        "Ongoing product and platform work.",
+      tags: ["Product Engineering", "EdTech", "SaaS"],
+      links: []
+    },
+    {
       name: "Polyglot",
       label: "AI developer tool",
       period: "2024",
@@ -288,57 +310,57 @@ export const portfolioContent = {
     }
   ] satisfies ProjectItem[],
   stackMap: {
-    title: "Technical stack",
+    title: "Selected systems",
     description: "",
     intro: "",
     clusters: [
       {
         id: "core",
-        label: "Core languages",
-        description: "Implementation layer across frontend, backend, scripts, and ops.",
+        label: "Product systems",
+        description: "Focused products shaped around real operating work.",
         detail:
-          "Languages and formats I use for application code, automation, and data.",
-        items: ["Python", "TypeScript/TSX", "JavaScript", "Bash", "Dockerfile", "YAML"]
+          "Focused internal products shaped around real workflows, ownership, and decision-making.",
+        items: ["Internal tools", "Workflow design", "Product"]
       },
       {
         id: "frontend",
-        label: "Frontend",
-        description: "Interfaces for dense workflows and product-facing tools.",
+        label: "Operating views",
+        description: "Clear views for dense information and active work.",
         detail:
-          "Tools for building interfaces, handling forms, and visualizing data.",
-        items: ["React 18", "Vite", "Tailwind", "shadcn/ui", "Radix UI", "React Query"]
+          "Compact dashboards that bring context, status, and next actions into one place.",
+        items: ["Dashboards", "Decision support", "Reporting"]
       },
       {
-        id: "data-analysis",
-        label: "Data & analysis",
-        description: "Tools for organizing, querying, and exploring data.",
+        id: "research",
+        label: "AI workflows",
+        description: "Useful assistance without losing human control.",
         detail:
-          "I use databases, data frames, and file formats to make information easier to analyze.",
-        items: ["PostgreSQL", "pandas", "NumPy", "SQL", "Parquet"]
+          "Assistive tools for research and repetitive work, built to keep people in the loop.",
+        items: ["AI assistants", "Research", "Human review"]
       },
       {
-        id: "integrations",
-        label: "APIs & integrations",
-        description: "Tools for connecting applications and working with APIs.",
+        id: "connections",
+        label: "Connected workflows",
+        description: "Less friction between the tools teams already use.",
         detail:
-          "I use API frameworks, SDKs, and validation libraries to build integrations.",
-        items: ["FastAPI", "Pydantic", "CRM APIs", "Messaging SDKs"]
+          "Practical integrations that reduce handoffs and keep information moving between teams.",
+        items: ["Integrations", "Automation", "Data flow"]
       },
       {
         id: "ops",
-        label: "Deployment / ops",
-        description: "Tools for packaging and maintaining software.",
+        label: "Delivery",
+        description: "Ownership from early build through daily use.",
         detail:
-          "I work with containers, command-line tools, version control, and Linux.",
-        items: ["Docker", "Docker Compose", "Git", "Linux"]
+          "End-to-end product work from the first useful version through stable day-to-day use.",
+        items: ["Full-stack", "Reliability", "Ownership"]
       },
       {
         id: "reports",
-        label: "Reports / docs",
-        description: "Generated reporting artifacts and file workflows.",
+        label: "Clear outputs",
+        description: "Readable artifacts for decisions and follow-through.",
         detail:
-          "File formats, plotting libraries, and document tools for preparing readable reports.",
-        items: ["Parquet", "CSV", "PDF", "PNG", "Matplotlib", "ReportLab"]
+          "Clear outputs designed to make dense information easier to review and act on.",
+        items: ["Data products", "Documents", "Clarity"]
       }
     ] satisfies StackCluster[]
   },
